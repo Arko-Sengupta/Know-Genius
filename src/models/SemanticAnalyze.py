@@ -70,8 +70,7 @@ class Semantic_Analyzer:
             
             return similarity[0][1]
         except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
-            raise e
+            pass
         
     def run(self, df, query):
         try:
