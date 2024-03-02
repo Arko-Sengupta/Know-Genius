@@ -78,7 +78,7 @@ class Semantic_Analyzer:
             df['Question'] = df['Question'].drop_duplicates()
             df = df.dropna()
             
-            if max(df['Similarity'].tolist()) >= 0.5:
+            if max(df['Similarity'].tolist()) >= 0.7:
                 return df.loc[df['Similarity'] == max(df['Similarity'].tolist()), 'Answer'].iloc[0]
             return self.ErrorMessage
         except Exception as e:

@@ -13,8 +13,9 @@ def UserInput():
         if prompt := st.chat_input("Message KnowGenius..."):
             Message(prompt, is_user=True)
             st.session_state.messages.append({"role": "user", "content": prompt})
-        
-            response = Chatbot().run(prompt)
+            
+            with st.spinner():
+                response = Chatbot().run(prompt)
  
             Message(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
