@@ -7,7 +7,7 @@ def AppHeader():
     try:
         bootstrap_utils()
         
-        title = 'CogniTalk (AI-ChatBot)'
+        title = 'KnowGenius (AI-ChatBot)'
         
         st.markdown(
             """
