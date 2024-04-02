@@ -30,7 +30,7 @@ def Message(chat, is_user=False):
                   }
                       
                   .bot {
-                      background: #262730;
+                      background: linear-gradient(rgb(0, 0, 128), rgb(255, 105, 180));
                       padding-top: 5px;
                       padding-left: 10px;
                       padding-right: 10px;
