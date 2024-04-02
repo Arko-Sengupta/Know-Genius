@@ -1,0 +1,7 @@
+
+# IGNORE Files
+src/__pycache__/
+src/models/__pycache__/
+frontend/src/__pycache__/
+frontend/src/components/__pycache__/
+data/processed_data/__pycache__/
