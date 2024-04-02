@@ -2,6 +2,10 @@ import os
 import logging
 import pandas as pd
 
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.WARNING)
+
 class PrepareDataset:
     def __init__(self) -> None:
         self.Dataset_Dir_Path = 'data/raw_data'
@@ -9,13 +13,6 @@ class PrepareDataset:
     def CountDatasets(self):
         try:
             return len([file for file in os.listdir(self.Dataset_Dir_Path) if os.path.isfile(os.path.join(self.Dataset_Dir_Path, file))])
-        except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
-            raise e
-
-    def merge_datasets(self, dataset_list):
-        try:
-            return pd.concat(dataset_list, ignore_index=True)
         except Exception as e:
             logging.error('An Error Occured: ', exc_info=e)
             raise e

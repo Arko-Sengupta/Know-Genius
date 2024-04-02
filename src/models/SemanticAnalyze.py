@@ -1,15 +1,15 @@
 import re
-import nltk
 import logging
-import pandas as pd
-from nltk.corpus import words
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
-from nltk.metrics import edit_distance
 from nltk.tokenize import word_tokenize
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.WARNING)
 
 # nltk.download('stopwords')
 # nltk.download('punkt')

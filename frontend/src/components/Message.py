@@ -4,6 +4,10 @@ from datetime import datetime
 
 from ..Utils import bootstrap_utils
 
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.WARNING)
+
 def Message(chat, is_user=False):
     try:
         bootstrap_utils()
@@ -20,6 +24,7 @@ def Message(chat, is_user=False):
                     margin-left: 200px;
                     margin-right: 10px;
                     border-radius: 10px;
+                    border-top-right-radius: 0px;
                     font-family: sans-serif;
                     font-size: 17px;
                   }
@@ -33,6 +38,7 @@ def Message(chat, is_user=False):
                       margin-left: 10px;
                       margin-right: 200px;
                       border-radius: 10px;
+                      border-top-left-radius: 0px;
                       font-family: sans-serif;
                       font-size: 17px;
                   }

@@ -3,6 +3,10 @@ import streamlit as st
 
 from ..Utils import bootstrap_utils
 
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.WARNING)
+
 def AppHeader():
     try:
         bootstrap_utils()

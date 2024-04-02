@@ -8,6 +8,10 @@ from .Message import Message
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.Chatbot import Chatbot
 
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.WARNING)
+
 def UserInput():
     try:        
         if prompt := st.chat_input("Message KnowGenius..."):
