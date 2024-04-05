@@ -7,11 +7,9 @@ logging.basicConfig(level=logging.INFO)
 logging.basicConfig(level=logging.ERROR)
 logging.basicConfig(level=logging.WARNING)
 
-def AppHeader():
+def AppHeader(title):
     try:
         bootstrap_utils()
-        
-        title = 'KnowGenius (AI-ChatBot)'
         
         st.markdown(
             """
