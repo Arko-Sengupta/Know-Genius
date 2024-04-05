@@ -24,9 +24,9 @@ def RenderMessages():
         logging.error('An Error Occured: ', exc_info=e)
         raise e
     
-def main():
+def App():
     try:
-        AppHeader()
+        AppHeader("KnowGenius")
         RenderMessages()
         UserInput()      
     except Exception as e:
@@ -34,4 +34,4 @@ def main():
         raise e
     
 if __name__=='__main__':
-    main()
+    App()
