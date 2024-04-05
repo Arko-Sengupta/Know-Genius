@@ -26,7 +26,7 @@ def RenderMessages():
     
 def App():
     try:
-        AppHeader("KnowGenius")
+        AppHeader("KnowGenius (AI-Chatbot)")
         RenderMessages()
         UserInput()      
     except Exception as e:
