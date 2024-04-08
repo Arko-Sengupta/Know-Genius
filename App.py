@@ -1,9 +1,13 @@
+import os
 import logging
 import streamlit as st
+from dotenv import load_dotenv
 
 from frontend.src.components.Header import AppHeader
 from frontend.src.components.User_Input import UserInput
 from frontend.src.components.Message import Message
+
+load_dotenv(".env")
     
 def RenderMessages():
     try:
@@ -26,7 +30,7 @@ def RenderMessages():
     
 def App():
     try:
-        AppHeader("KnowGenius (AI-Chatbot)")
+        AppHeader(os.getenv("TITLE"))
         RenderMessages()
         UserInput()      
     except Exception as e:

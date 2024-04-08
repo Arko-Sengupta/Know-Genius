@@ -1,8 +1,10 @@
+import os
 import re
 import logging
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from dotenv import load_dotenv
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -14,10 +16,12 @@ logging.basicConfig(level=logging.WARNING)
 # nltk.download('stopwords')
 # nltk.download('punkt')
 
+load_dotenv(".env")
+
 class Semantic_Analyzer:
     
     def __init__(self) -> None:
-        self.ErrorMessage = 'Can you please elaborate your question so that I can understand it properly!'
+        self.ErrorMessage = os.getenv("ERROR_MESSAGE")
     
     def Sanitize_String(self, text):
         try:
