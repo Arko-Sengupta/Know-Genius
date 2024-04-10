@@ -34,7 +34,7 @@ class Chatbot:
             logging.error('An Error Occured: ', exc_info=e)
             raise e
 
-class BACKEND_SERVER:
+class Chatbot_API:
 
     def __init__(self):
         self.app = Flask(__name__)
@@ -69,5 +69,5 @@ class BACKEND_SERVER:
         
 if __name__=='__main__':
       
-    server = BACKEND_SERVER()
+    server = Chatbot_API()
     server.run()
