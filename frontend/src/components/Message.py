@@ -1,6 +1,5 @@
 import logging
 import streamlit as st
-from datetime import datetime
 
 from ..Utils import bootstrap_utils
 
@@ -96,8 +95,6 @@ def Message(chat, is_user=False):
             """,
             unsafe_allow_html=True
         )
-        
-        # current_time = datetime.now().strftime("%H:%M:%S")
         
         
         if is_user == False:

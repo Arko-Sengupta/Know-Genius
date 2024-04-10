@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.WARNING)
 
 class PrepareDataset:
     def __init__(self) -> None:
-        self.Dataset_Dir_Path = 'data/raw_data'
+        self.Dataset_Dir_Path = 'backend/data'
     
     def CountDatasets(self):
         try:
@@ -21,7 +21,7 @@ class PrepareDataset:
         try:
             datasets_count = self.CountDatasets()
             
-            dfs = [pd.read_excel(f'data/raw_data/General_Knowledge_Sheet_{i}.xlsx') for i in range(1, datasets_count + 1)]
+            dfs = [pd.read_excel(f'backend/data/General_Knowledge_Sheet_{i}.xlsx') for i in range(1, datasets_count + 1)]
             df = pd.concat(dfs, ignore_index=True)
             df.drop_duplicates(inplace=True)
             
