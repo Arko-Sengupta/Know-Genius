@@ -37,13 +37,10 @@ Before diving into the project, ensure you have the following prerequisites:
 
 4. Start Backend Server
    ```bash
-   python SERVER.py
+   python Chatbot_API.py
    ```
 
-5. Confirm Server Start: Open the below URL at Browser
-   ```bash
-   URL: http://localhost:5000/
-   ```
+5. Confirm Server Start: Open the below URL at Browser: [http://localhost:5000/](http://localhost:5000/)
 
 6. Start the Application
    ```bash
