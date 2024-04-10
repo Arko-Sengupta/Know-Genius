@@ -21,7 +21,7 @@ load_dotenv(".env")
 class Semantic_Analyzer:
     
     def __init__(self) -> None:
-        self.ErrorMessage = os.getenv("ERROR_MESSAGE")
+        self.ErrorMessage = os.getenv("RESPONSE_MESSAGE")
     
     def Sanitize_String(self, text):
         try:

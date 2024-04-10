@@ -13,6 +13,7 @@ class Chatbot_UI:
     
     def __init__(self):
         self.title = os.getenv("TITLE")
+        self.ERROR_MESSAGE = os.getenv("ERROR_MESSAGE")
         self.SERVER_URL = os.getenv("SERVER_URL")
         self.AppHeader = AppHeader
         self.Message = Message
@@ -46,7 +47,7 @@ class Chatbot_UI:
                     response = requests.post(self.SERVER_URL, json={'query': prompt})
                     if response.status_code != 200:
                         response = {
-                            'response': "An Error Occured! Apologies for the inconvenience caused!"
+                            'response': self.ERROR_MESSAGE
                         }
      
                 self.Message(response.json()['response'])
