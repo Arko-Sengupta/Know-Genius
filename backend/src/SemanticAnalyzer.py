@@ -20,8 +20,8 @@ load_dotenv(".env")
 
 class Semantic_Analyzer:
     
-    def __init__(self) -> None:
-        self.ErrorMessage = os.getenv("RESPONSE_MESSAGE")
+    def __init__(self, RESPONSE_MESSAGE='') -> None:
+        self.ResponseMessage = RESPONSE_MESSAGE
     
     def Sanitize_String(self, text):
         try:
@@ -84,7 +84,7 @@ class Semantic_Analyzer:
             
             if max(df['Similarity'].tolist()) >= 0.85:
                 return df.loc[df['Similarity'] == max(df['Similarity'].tolist()), 'Answer'].iloc[0]
-            return self.ErrorMessage
+            return self.ResponseMessage
         except Exception as e:
             logging.error('An Error Occured: ', exc_info=e)
             raise e

@@ -15,8 +15,9 @@ from backend.src.SemanticAnalyzer import Semantic_Analyzer
 class Chatbot:
     
     def __init__(self):
+        self.RESPONSE_MESSAGE = os.getenv("RESPONSE_MESSAGE")
         self.dataPrep = PrepareDataset()
-        self.analyzer = Semantic_Analyzer()
+        self.analyzer = Semantic_Analyzer(self.RESPONSE_MESSAGE)
         
     def PrepareData(self):
         try:

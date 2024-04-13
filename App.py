@@ -14,7 +14,7 @@ class Chatbot_UI:
     def __init__(self):
         self.title = os.getenv("TITLE")
         self.ERROR_MESSAGE = os.getenv("ERROR_MESSAGE")
-        self.SERVER_URL = os.getenv("SERVER_URL")
+        self.CHATBOT_API = os.getenv("CHATBOT_API")
         self.AppHeader = AppHeader
         self.Message = Message
         
@@ -44,14 +44,15 @@ class Chatbot_UI:
                 st.session_state.messages.append({"role": "user", "content": prompt})
                 
                 with st.spinner():
-                    response = requests.post(self.SERVER_URL, json={'query': prompt})
-                    if response.status_code != 200:
+                    try:
+                        response = requests.post(self.CHATBOT_API, json={'query': prompt}).json()
+                    except:
                         response = {
                             'response': self.ERROR_MESSAGE
                         }
      
-                self.Message(response.json()['response'])
-                st.session_state.messages.append({"role": "assistant", "content": response.json()['response']})
+                self.Message(response['response'])
+                st.session_state.messages.append({"role": "assistant", "content": response['response']})
         except Exception as e:
             logging.error('An Error Occured: ', exc_info=e)
             raise e
