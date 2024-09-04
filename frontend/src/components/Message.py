@@ -62,14 +62,6 @@ def Message(chat, is_user=False):
                 .user, .bot { font-size: 12px; }
                 .timestamp { font-size: 8px; }
             }
-            @media screen and (max-width: 470px) {
-                .user, .bot { font-size: 10px; }
-                .timestamp { font-size: 7px; }
-            }
-            @media screen and (max-width: 400px) {
-                .user, .bot { font-size: 7px; }
-                .timestamp { font-size: 6px; }
-            }
         </style>
         """
         st.markdown(custom_css, unsafe_allow_html=True)

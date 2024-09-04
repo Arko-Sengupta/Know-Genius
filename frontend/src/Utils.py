@@ -3,6 +3,20 @@ import streamlit as st
 
 def bootstrap_utils():
     try:
+        # Define Custom CSS Style
+        custom_css = """
+        <style>
+            .main {
+                min-width: 450px;
+                height: 100vh;
+                padding-bottom: 20px;
+            }
+            @media screen and (max-width: 450px) { .main { min-width: 380px }}
+            @media screen and (max-width: 344px) { .main { min-width: 344px }}
+        </style>
+        """
+        st.markdown(custom_css, unsafe_allow_html=True)
+        
         st.markdown("""
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
