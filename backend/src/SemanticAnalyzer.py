@@ -1,4 +1,3 @@
-import os
 import re
 import logging
 from nltk.corpus import wordnet
@@ -73,7 +72,7 @@ class Semantic_Analyzer:
             similarity = cosine_similarity(vectors)
             
             return similarity[0][1]
-        except Exception as e:
+        except Exception:
             pass
         
     def run(self, df, query):

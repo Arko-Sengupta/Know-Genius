@@ -79,6 +79,6 @@ def Message(chat, is_user=False):
             </div>
         ''', unsafe_allow_html=True)
     
-    except Exception as e:
+    except Exception:
         logging.error('An error occurred while rendering the Message component:', exc_info=True)
         raise

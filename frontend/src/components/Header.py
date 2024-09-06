@@ -34,6 +34,6 @@ def AppHeader(title):
         # Display Title
         st.markdown(f'''<p class="fs">{title}</p>''', unsafe_allow_html=True)
     
-    except Exception as e:
+    except Exception:
         logging.error('An error occurred while rendering the AppHeader:', exc_info=True)
         raise

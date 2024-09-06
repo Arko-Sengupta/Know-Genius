@@ -3,8 +3,8 @@ import logging
 import requests
 import streamlit as st
 from dotenv import load_dotenv
-from frontend.src.Components.Header import AppHeader
-from frontend.src.Components.Message import Message
+from frontend.src.components.Header import AppHeader
+from frontend.src.components.Message import Message
 
 # Load Environment Variables
 load_dotenv(".env")
@@ -16,7 +16,7 @@ class ChatbotUI:
 
     def __init__(self):
         self.title = os.getenv("TITLE", "KnowGenius (AI-Chatbot)")
-        self.chatbot_api = os.getenv("CHATBOT_API", "")
+        self.chatbot_api = os.getenv("CHATBOT_API")
         self.AppHeader = AppHeader
         self.Message = Message
 
@@ -39,7 +39,7 @@ class ChatbotUI:
                     self.Message(message["content"], is_user=True)
                 else:
                     self.Message(message["content"])
-        except Exception as e:
+        except Exception:
             logging.error('An error occurred while rendering messages', exc_info=True)
             st.error("An Error Occured!")
 
@@ -56,13 +56,13 @@ class ChatbotUI:
                         response = requests.post(self.chatbot_api, json={'query': prompt})
                         response_json = response.json()
                         response_text = response_json.get('response', "An Error Occured!")
-                    except Exception as e:
+                    except Exception:
                         logging.error("Error while communicating with Chatbot API", exc_info=True)
                         response_text = "An Error Occured!"
 
                 self.Message(response_text)
                 st.session_state.messages.append({"role": "assistant", "content": response_text})
-        except Exception as e:
+        except Exception:
             logging.error('An error occurred while handling user input', exc_info=True)
             st.error("An Error Occured!")
 
@@ -73,10 +73,11 @@ class ChatbotUI:
             self.Initialize_Messages()
             self.Messages()
             self.User_Input()
-        except Exception as e:
+        except Exception:
             logging.error('An error occurred during application execution', exc_info=True)
             st.error("An Error Occured!")
 
 if __name__ == '__main__':
+    
     app = ChatbotUI()
     app.run()

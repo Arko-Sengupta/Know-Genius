@@ -2,15 +2,14 @@ import os
 import sys
 import logging
 from flask import Blueprint, Flask, jsonify, request
+from backend.src.PrepareDataset import PrepareDataset
+from backend.src.SemanticAnalyzer import Semantic_Analyzer
 
 logging.basicConfig(level=logging.INFO)
 logging.basicConfig(level=logging.ERROR)
 logging.basicConfig(level=logging.WARNING)
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from backend.src.PrepareDataset import PrepareDataset
-from backend.src.SemanticAnalyzer import Semantic_Analyzer
 
 class Chatbot:
     
