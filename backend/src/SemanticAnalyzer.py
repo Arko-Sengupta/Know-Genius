@@ -1,89 +1,126 @@
 import re
+import json
 import logging
-from nltk.corpus import wordnet
-from nltk.corpus import stopwords
+import pandas as pd
+from nltk.corpus import wordnet, stopwords
 from nltk.tokenize import word_tokenize
-from dotenv import load_dotenv
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-logging.basicConfig(level=logging.INFO)
-logging.basicConfig(level=logging.ERROR)
-logging.basicConfig(level=logging.WARNING)
+# Set Up Logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# nltk.download('stopwords')
-# nltk.download('punkt')
-
-load_dotenv(".env")
-
-class Semantic_Analyzer:
+class SemanticAnalyzer:
     
-    def __init__(self) -> None:
-        pass
-    
-    def Sanitize_String(self, text):
+    def __init__(self, dataset_path='backend/data/General_Knowledge_Data.json') -> None:
+        """
+        Initialize the Semantic Analyzer with the path to the dataset.
+        """
+        self.dataset_path = dataset_path
+        
+    def ConvertToDataframe(self) -> pd.DataFrame:
+        """
+        Load the dataset from JSON and convert it to a Pandas DataFrame.
+        """
         try:
-            return re.sub(r'[^a-zA-Z0-9\s]', '', text).lower()
+            with open(self.dataset_path, 'r') as file:
+                data = json.load(file)
+            return pd.DataFrame(data)
         except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
+            logging.error("Error loading dataset: ", exc_info=True)
+            raise e
+    
+    def Sanitize_String(self, text: str) -> str:
+        """
+        Sanitize the Input Text by removing non-alphanumeric characters and converting to lowercase.
+        """
+        try:
+            text = re.sub(r'[^a-zA-Z0-9\s]', '', text).lower()
+            return ' '.join(text.split())
+        except Exception as e:
+            logging.error('Error sanitizing string: ', exc_info=True)
             raise e
         
-    def Preprocess_Stopwords(self, text):
+    def Preprocess_Stopwords(self, text: str) -> str:
+        """
+        Remove stopwords from the Input Text.
+        """
         try:
-             filtered_words = [word for word in word_tokenize(text) if word not in set(stopwords.words('english'))]
-             return ' '.join(filtered_words)
+            filtered_words = [word for word in word_tokenize(text) if word not in set(stopwords.words('english'))]
+            return ' '.join(filtered_words)
         except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
+            logging.error('Error preprocessing stopwords: ', exc_info=True)
             raise e
         
-    def Synonym_List(self, word):
+    def Synonyms_List(self, word: str) -> list:
+        """
+        Retrieve a list of synonyms for a given word.
+        """
         try:
-            synonyms = []
+            synonyms = set()
             for syn in wordnet.synsets(word):
-                for lemma in syn.lemmas():
-                    synonyms.append(lemma.name().lower())
-            return list(set(synonyms))
+                synonyms.update(lemma.name().lower() for lemma in syn.lemmas())
+            return list(synonyms)
         except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
+            logging.error('Error getting synonyms: ', exc_info=True)
             raise e
         
-    def Synonym_String(self, text):
+    def Synonyms_String(self, text: str) -> str:
+        """
+        Replace words in the text with their synonyms.
+        """
         try:
-            synonym_lists = [self.Synonym_List(word) for word in word_tokenize(text)]
-            return ' '.join([synonym for synonym_list in synonym_lists for synonym in synonym_list])
+            words = word_tokenize(text)
+            expanded_words = [synonym for word in words for synonym in self.Synonyms_List(word)]
+            return ' '.join(expanded_words)
         except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
+            logging.error('Error expanding with synonyms: ', exc_info=True)
+            raise e
+        
+    def Preprocess_Text(self, text: str) -> str:
+        """
+        Sanitize, remove stopwords, and expand the text with synonyms.
+        """
+        try:
+            text = self.Sanitize_String(text)
+            text = self.Preprocess_Stopwords(text)
+            text = self.Synonyms_String(text)
+            return text
+        except Exception as e:
+            logging.error("Error preprocessing text: ", exc_info=True)
             raise e
     
-    def CosineSimilarity(self, query, question):
+    def Cosine_Similarity(self, query: str, question: str) -> float:
+        """
+        Compute the Cosine Similarity between the query and the question.
+        """
         try:
-            query = self.Sanitize_String(query)
-            query = self.Preprocess_Stopwords(query)
-            query = self.Synonym_String(query)
-            
-            question = self.Sanitize_String(question)
-            question = self.Preprocess_Stopwords(question)
-            question = self.Synonym_String(question)
+            query = self.Preprocess_Text(query)
+            question = self.Preprocess_Text(question)
             
             vectorizer = TfidfVectorizer()
             vectors = vectorizer.fit_transform([query, question])
             
             similarity = cosine_similarity(vectors)
-            
             return similarity[0][1]
-        except Exception:
-            pass
+        except Exception as e:
+            logging.error('Error computing cosine similarity: ', exc_info=True)
+            raise e
         
-    def run(self, df, query):
+    def run(self, query: str) -> str:
+        """
+        Run the Semantic Analysis on the query and return the most similar answer from the dataset.
+        """
         try:
-            df['Similarity'] = df['Question'].apply(lambda x: self.CosineSimilarity(query, x))
-            df['Question'] = df['Question'].drop_duplicates()
-            df = df.dropna()
+            df = self.ConvertToDataframe()
             
-            if max(df['Similarity'].tolist()) >= 0.85:
-                return df.loc[df['Similarity'] == max(df['Similarity'].tolist()), 'Answer'].iloc[0]
+            df['similarity'] = df['question'].apply(lambda x: self.Cosine_Similarity(query, x))
+            df = df.drop_duplicates(subset=['question']).dropna(subset=['similarity'])
+            
+            max_similarity = df['similarity'].max()
+            if max_similarity >= 0.85:
+                return df.loc[df['similarity'] == max_similarity, 'answer'].iloc[0]
             return "Unable to Analyze"
         except Exception as e:
-            logging.error('An Error Occured: ', exc_info=e)
+            logging.error('Error in run method: ', exc_info=True)
             raise e

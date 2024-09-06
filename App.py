@@ -14,13 +14,13 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class ChatbotUI:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.title = os.getenv("TITLE", "KnowGenius (AI-Chatbot)")
         self.chatbot_api = os.getenv("CHATBOT_API")
         self.AppHeader = AppHeader
         self.Message = Message
 
-    def Initialize_Messages(self):
+    def Initialize_Messages(self) -> None:
         """Initialize Session State Messages."""
         if "messages" not in st.session_state:
             st.session_state.messages = [
@@ -31,7 +31,7 @@ class ChatbotUI:
             ]
             logging.info("Session state messages initialized.")
 
-    def Messages(self):
+    def Messages(self) -> None:
         """Render All Messages from Session State."""
         try:
             for message in st.session_state.messages:
@@ -43,7 +43,7 @@ class ChatbotUI:
             logging.error('An error occurred while rendering messages', exc_info=True)
             st.error("An Error Occured!")
 
-    def User_Input(self):
+    def User_Input(self) -> None:
         """Capture and Handle User Input."""
         try:
             prompt = st.chat_input("Message KnowGenius...")
@@ -66,7 +66,7 @@ class ChatbotUI:
             logging.error('An error occurred while handling user input', exc_info=True)
             st.error("An Error Occured!")
 
-    def run(self):
+    def run(self) -> None:
         """Run the Chatbot UI."""
         try:
             self.AppHeader(self.title)
