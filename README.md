@@ -1,4 +1,4 @@
-# KnowGenius
+# Know-Genius
 
 ## Overview
 Welcome to _**KnowGenius**_! _**KnowGenius**_ is a _**Chabot**_ designed to answer _**General Knowledge**_ based Questions. Whether you are a developer or contributor, this _**README.md**_ will guide you through the essentials of the project.
