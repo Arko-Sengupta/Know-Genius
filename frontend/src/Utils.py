@@ -9,7 +9,6 @@ def bootstrap_utils():
             .main {
                 min-width: 450px;
                 height: 100vh;
-                padding-bottom: 20px;
             }
             @media screen and (max-width: 450px) { .main { min-width: 380px }}
             @media screen and (max-width: 344px) { .main { min-width: 344px }}
