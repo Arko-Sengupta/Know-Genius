@@ -25,7 +25,7 @@ class ChatbotUI:
         if "messages" not in st.session_state:
             st.session_state.messages = [
                 {"role": "assistant", "content": "Hey there!"},
-                {"role": "assistant", "content": "I'm General Expertise & Navigation Intelligence Utility System! KnowGenius..."},
+                {"role": "assistant", "content": "I'm General Expertise & Navigation Intelligence Utility System! KnowGenius!"},
                 {"role": "assistant", "content": "I'm a General Knowledge Expert."},
                 {"role": "assistant", "content": "Ask your question?"}
             ]

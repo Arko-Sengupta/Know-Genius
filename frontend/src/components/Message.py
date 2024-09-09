@@ -18,7 +18,7 @@ def Message(chat, is_user=False):
         custom_css = """
         <style>
             .user, .bot {
-                min-width: 0;  
+                min-width: fit-content;  
                 display: inline-block;
                 position: relative;
                 padding: 5px 10px;
@@ -33,12 +33,12 @@ def Message(chat, is_user=False):
                 transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
             }
             .user {
-                margin: 0 10px 0 200px;
+                margin: 0 10px 0 auto;
                 background: #262730;
                 border-top-right-radius: 0px;
             }
             .bot {
-                margin: 0 200px 0 10px;
+                margin: 0 auto 0 10px;
                 background: linear-gradient(135deg, #6c00a5, #b92b81);
                 border-top-left-radius: 0px;
             }
@@ -54,22 +54,34 @@ def Message(chat, is_user=False):
                 position: absolute;
                 font-size: 8px;
             }
+            /* Responsive Design */
             @media screen and (max-width: 700px) {
-                .user, .bot { font-size: 15px; }
-                .timestamp { font-size: 9px; }
+                .user, .bot { 
+                    font-size: 15px; 
+                    margin: 0 5px;
+                }
+                .timestamp { 
+                    font-size: 9px; 
+                }
             }
             @media screen and (max-width: 570px) {
-                .user, .bot { font-size: 12px; }
-                .timestamp { font-size: 8px; }
+                .user, .bot {
+                    font-size: 12px;
+                    min-width: 100px;
+                    max-width: 100%;
+                }
+                .timestamp { 
+                    font-size: 8px; 
+                }
             }
         </style>
         """
         st.markdown(custom_css, unsafe_allow_html=True)
 
-        # Determine the Message class based on whether it's an User or Bot Message
+        # Determine Message Class (user or bot)
         message_class = "user" if is_user else "bot"
 
-        # Display the Chat Message
+        # Display Chat Message with Timestamp
         st.markdown(f'''
             <div class="d-flex flex-row{'-reverse' if is_user else ''} my-0 py-0">
                 <div class="row {message_class}">
@@ -78,7 +90,7 @@ def Message(chat, is_user=False):
                 </div>
             </div>
         ''', unsafe_allow_html=True)
-    
-    except Exception:
-        logging.error('An error occurred while rendering the Message component:', exc_info=True)
+
+    except Exception as e:
+        logging.error(f'An Error Occurred while rendering the Message Component: {e}', exc_info=True)
         raise
