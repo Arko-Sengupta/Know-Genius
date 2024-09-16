@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 
 def Message(chat, is_user=False):
     try:
-        # Initialize Utilities
+        # Initialize Utilitie
         bootstrap_utils()
 
         # Get the Current Date and Time

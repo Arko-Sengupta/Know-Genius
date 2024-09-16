@@ -10,7 +10,7 @@ def AppHeader(title):
         # Initialize Utilities
         bootstrap_utils()
         
-        # Define Custom CSS Styles
+        # Define Custom CSS Style
         custom_css = """
         <style>
             .fs {

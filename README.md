@@ -10,7 +10,7 @@ Welcome to _**KnowGenius**_! _**KnowGenius**_ is a _**Chabot**_ designed to answ
 4. [Contribution](#contribution)
 
 ## Introduction
-Your friendly guide to all things general knowledge. With just a chat away, dive into various topics and expand your understanding effortlessly. Say hello to KnowGenius and embark on a journey of learning made easy.
+Your friendly guide to all things general knowledge. With just a chat away, dive into various topics and expand your understanding effortlessly. Say Hello to KnowGenius and embark on a journey of learning made easy.
 
 ## Getting Started
 Before diving into the project, ensure you have the following prerequisites:

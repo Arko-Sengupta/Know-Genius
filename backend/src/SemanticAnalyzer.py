@@ -1,5 +1,5 @@
-import re
 import json
+import re
 import logging
 import pandas as pd
 from nltk.corpus import wordnet, stopwords

@@ -3,7 +3,7 @@ import streamlit as st
 
 def bootstrap_utils():
     try:
-        # Define Custom CSS Style
+        # Define Custom CSS Styles
         custom_css = """
         <style>
             .main {
