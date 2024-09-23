@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 import logging
 from flask import Blueprint, Flask, jsonify, request
 from backend.src.SemanticAnalyzer import SemanticAnalyzer
