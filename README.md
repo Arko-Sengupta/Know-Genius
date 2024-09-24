@@ -49,5 +49,5 @@ Before diving into the project, ensure you have the following prerequisites:
 
 ## Contribution
 If you'd like to contribute, follow the guidelines
-- Create a branch using the format `KnowGenius_<YourUsername>` when contributing to the project.
+- Create a branch using the format `Know-Genius_<YourUsername>` when contributing to the project.
 - Add the label `Contributor` to your contributions to distinguish them within the project.
