@@ -14,7 +14,8 @@ Welcome to _**KnowGenius**_! _**KnowGenius**_ is a _**Chabot**_ designed to answ
 Your friendly guide to all things general knowledge. With just a chat away, dive into various topics and expand your understanding effortlessly. Say Hello to KnowGenius and embark on a journey of learning made easy.
 
 ## Application UI
-![Screenshot 2024-10-14 122912](https://github.com/user-attachments/assets/c2190079-f72c-47f1-a628-ac41e3485b4b)
+![Screenshot 2024-10-14 162334](https://github.com/user-attachments/assets/bc418d26-7296-4e95-9796-bdd71fba21aa)
+![Screenshot 2024-10-14 162358](https://github.com/user-attachments/assets/6fab32b2-4930-4f91-845c-a03ae93c259d)
 
 ## Getting Started
 Before diving into the project, ensure you have the following prerequisites:
