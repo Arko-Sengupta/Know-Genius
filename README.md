@@ -22,7 +22,7 @@ Before diving into the project, ensure you have the following prerequisites:
 - Programming Language: [Python 3.X](https://www.python.org/)
 - Package Manager: [pip](https://pypi.org/project/pip/)
 - Version Control: [Git](https://git-scm.com/)
-- Integrated Development Environment: [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/)
+- Integrated Development Environment: [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm)
 
 ## Installation
 1. Clone Repository
