@@ -1,5 +1,5 @@
-import logging
 import os
+import logging
 import requests
 import streamlit as st
 from dotenv import load_dotenv
