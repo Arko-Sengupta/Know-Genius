@@ -1,6 +1,6 @@
 import logging
-import requests
 import os
+import requests
 import streamlit as st
 from dotenv import load_dotenv
 from frontend.src.components.Header import AppHeader
